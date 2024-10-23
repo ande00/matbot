@@ -153,7 +153,11 @@ async function createBot() {
 
   bot.on('messagestr', async (message, messagePosition, jsonMsg, sender, verified) => {
   const channel = await client.channels.fetch("1298675034264436879");
-  if(message !== null) channel.send(message);
+  const embed = new EmbedBuilder()
+    .setDescription(message)
+    .setColor(0x2B2D31)
+    .setTimestamp();
+  channel.send({ embeds: [embed] });
 })
 
   bot.on("end", () => {
