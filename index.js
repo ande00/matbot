@@ -125,7 +125,13 @@ function handler(bot) {
     }
   });
 
-  bot.on("messagestr", (msg) => {
+  bot.on("messagestr", async (message, messagePosition, jsonMsg, sender, verified) => {
+    const channel = await client.channels.fetch("1298675034264436879");
+    const regExp = /[a-zA-Z]/g;
+    const embed = new EmbedBuilder()
+    .setDescription(message)
+    .setColor(0x2B2D31)
+    .setTimestamp();
     const incomingTP =
       /^Type \/tpy ([A-Za-z0-9_]+) to accept or \/tpn \1 to deny\.$/.exec(msg);
     if (incomingTP) {
@@ -137,6 +143,10 @@ function handler(bot) {
         bot.chat(`/tpn ${incomingTP[1]}`);
         bot.chat(`/w ${incomingTP[1]} kys`);
       }
+    }
+    if(regExp.test(message)) {
+      if(sender) embed.setAuthor({  iconURL: `https://mc-heads.net/head/${sender}` })
+      channel.send({ embeds: [embed] });
     }
   });
 }
@@ -150,18 +160,6 @@ async function createBot() {
     host: "0b0t.org",
     version: "1.12.2",
   });
-
-  bot.on('messagestr', async (message, messagePosition, jsonMsg, sender, verified) => {
-  const channel = await client.channels.fetch("1298675034264436879");
-  const embed = new EmbedBuilder()
-    .setDescription(message)
-    .setColor(0x2B2D31)
-    .setTimestamp();
-    console.log(sender)
-    console.log(message)
-  //if(sender) embed.setAuthor({  iconURL: `` })
-  if(message) channel.send({ embeds: [embed] });
-})
 
   bot.on("end", () => {
     log("Disconnected", "Red");
