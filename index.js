@@ -29,7 +29,7 @@ app.post("/auth/:code", async (req, res) => {
       client_secret: process.env.SECRET,
       grant_type: "authorization_code",
       code: code.toString(),
-      redirect_uri: "http://localhost:420/callback",
+      redirect_uri: "http://localhost:420/api/auth/discord/redirect",
     });
 
     const output = await axios.post(
