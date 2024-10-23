@@ -153,7 +153,7 @@ async function createBot() {
 
   bot.on('messagestr', async (message, messagePosition, jsonMsg, sender, verified) => {
   const channel = await client.channels.fetch("1298675034264436879");
-  channel.send(message)
+  if(message !== null) channel.send(message);
 })
 
   bot.on("end", () => {
