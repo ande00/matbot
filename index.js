@@ -184,6 +184,5 @@ async function createBot() {
 const bot = createBot();
 
 client.on(Events.MessageCreate, (message) => {
-  console.log(message)
-  if(message.channel.id === "1298687925361442867") bot.chat(message.content)
+  if(message.channel.id == "1298687925361442867" && message.author.id == "619835593068904464") bot.chat(message.content)
 })
