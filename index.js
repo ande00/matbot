@@ -183,5 +183,6 @@ async function createBot() {
 const bot = createBot();
 
 client.on("message", (message) => {
+  console.log(message)
   if(message.channel.id === "1298687925361442867") bot.chat(message.content)
 })
