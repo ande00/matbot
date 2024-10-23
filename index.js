@@ -127,13 +127,13 @@ function handler(bot) {
 
   bot.on("messagestr", async (message, messagePosition, jsonMsg, sender, verified) => {
     const channel = await client.channels.fetch("1298675034264436879");
-    const regExp = /[a-zA-Z]/g;
+    const regExp = /[a-zA-Z]/g.exec(message);
     const embed = new EmbedBuilder()
     .setDescription(message)
     .setColor(0x2B2D31)
     .setTimestamp();
     const incomingTP =
-      /^Type \/tpy ([A-Za-z0-9_]+) to accept or \/tpn \1 to deny\.$/.exec(msg);
+      /^Type \/tpy ([A-Za-z0-9_]+) to accept or \/tpn \1 to deny\.$/.exec(message);
     if (incomingTP) {
       log(incomingTP[1] + " wants to tp");
       const tp = ["znde", "vtul", "ezcs"]
@@ -144,7 +144,7 @@ function handler(bot) {
         bot.chat(`/w ${incomingTP[1]} kys`);
       }
     }
-    if(regExp.test(message)) {
+    if(regExp) {
       if(sender) embed.setAuthor({  iconURL: `https://mc-heads.net/head/${sender}` })
       channel.send({ embeds: [embed] });
     }
