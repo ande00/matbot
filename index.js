@@ -178,11 +178,12 @@ async function createBot() {
     bot.pathfinder.setMovements(defaultMovements)
     bot.loadPlugin(handler);
   })
+
+  client.on(Events.MessageCreate, (message) => {
+  if(message.channel.id == "1298687925361442867" && message.author.id == "619835593068904464") bot.chat(message.content)
+})
+  
   return bot;
 }
 
 const bot = createBot();
-
-client.on(Events.MessageCreate, (message) => {
-  if(message.channel.id == "1298687925361442867" && message.author.id == "619835593068904464") bot.chat(message.content)
-})
