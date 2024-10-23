@@ -158,6 +158,7 @@ async function createBot() {
     .setColor(0x2B2D31)
     .setTimestamp();
     console.log(sender)
+    console.log(message)
   //if(sender) embed.setAuthor({  iconURL: `` })
   if(message) channel.send({ embeds: [embed] });
 })
