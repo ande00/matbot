@@ -5,8 +5,8 @@ const vec3 = require("vec3");
 module.exports = {
   async execute(bot, message, username) {
     const xyz = process.env.STASH.split(',')
-    const pos = new vec3(xyz);
-    if(bot.entity.position.distanceTo(pos) < 10) bot.chat("/kill");
+    const stash = new vec3(xyz);
+    if(bot.entity.position.distanceTo(stash) < 10) bot.chat("/kill");
     const args = message.split(" ");
     const order = args[1];
     const tp = args[2];
