@@ -6,7 +6,7 @@ module.exports = {
   async execute(bot, message, username) {
     const xyz = process.env.STASH.split(',')
     const stash = new vec3(xyz);
-    if(bot.entity.position.distanceTo(stash) < 10) bot.chat("/kill");
+    if(bot.entity.position.distanceTo(stash) > 10) bot.chat("/kill");
     const args = message.split(" ");
     const order = args[1];
     const tp = args[2];
